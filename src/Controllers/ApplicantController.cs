@@ -3,7 +3,6 @@ using NCARB.EesaService.Entities;
 using Microsoft.AspNetCore.Mvc;
 using NCARB.EesaService.Infrastructure;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace NCARB.EesaService.Controllers

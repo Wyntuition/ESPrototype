@@ -8,7 +8,7 @@ using NCARB.EesaService.Infrastructure;
 namespace src.Migrations
 {
     [DbContext(typeof(ApplicantContext))]
-    [Migration("20161019163341_Initial")]
+    [Migration("20161019170417_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
