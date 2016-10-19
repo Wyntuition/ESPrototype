@@ -44,9 +44,15 @@ namespace NCARB.EesaService.Controllers
                 return BadRequest(ModelState);
             }
 
+            var deficiencies = new List<Deficiency>();
+            deficiencies.Add(new Deficiency {
+                CategoryDeficiency = new CategoryDeficiency { Category = new Category { Name = "Test Category 1", Area = new Area { Name = "Test Area 1" } } }
+            });
+
             _applicantRepository.Add(
                 new Applicant { 
-                        LastName = Applicant.LastName
+                        LastName = Applicant.LastName,
+                        Deficiencies = deficiencies
                     });
 
             await _applicantRepository.SaveChangesAsync();

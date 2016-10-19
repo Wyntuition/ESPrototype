@@ -1,6 +1,6 @@
 ﻿namespace NCARB.EesaService.Entities
 {
-    public class Catagory : EntityBase
+    public class Category : EntityBase
     {
         public string Name { get; set; }
 

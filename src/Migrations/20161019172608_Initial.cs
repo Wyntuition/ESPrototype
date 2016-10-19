@@ -35,7 +35,7 @@ namespace src.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Catagory",
+                name: "Category",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -45,11 +45,30 @@ namespace src.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Catagory", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Catagory_Area_AreaId",
+                        name: "FK_Category_Area_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Area",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CategoryDeficiency",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Autoincrement", true),
+                    CategoryId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoryDeficiency", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CategoryDeficiency_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -61,7 +80,7 @@ namespace src.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Autoincrement", true),
                     ApplicantId = table.Column<int>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: true)
+                    CategoryDeficiencyId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,17 +92,22 @@ namespace src.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Deficiency_Catagory_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Catagory",
+                        name: "FK_Deficiency_CategoryDeficiency_CategoryDeficiencyId",
+                        column: x => x.CategoryDeficiencyId,
+                        principalTable: "CategoryDeficiency",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Catagory_AreaId",
-                table: "Catagory",
+                name: "IX_Category_AreaId",
+                table: "Category",
                 column: "AreaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CategoryDeficiency_CategoryId",
+                table: "CategoryDeficiency",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Deficiency_ApplicantId",
@@ -91,9 +115,9 @@ namespace src.Migrations
                 column: "ApplicantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Deficiency_CategoryId",
+                name: "IX_Deficiency_CategoryDeficiencyId",
                 table: "Deficiency",
-                column: "CategoryId");
+                column: "CategoryDeficiencyId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -105,7 +129,10 @@ namespace src.Migrations
                 name: "Applicant");
 
             migrationBuilder.DropTable(
-                name: "Catagory");
+                name: "CategoryDeficiency");
+
+            migrationBuilder.DropTable(
+                name: "Category");
 
             migrationBuilder.DropTable(
                 name: "Area");

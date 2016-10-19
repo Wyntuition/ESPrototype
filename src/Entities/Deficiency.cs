@@ -2,6 +2,6 @@
 {
     public class Deficiency : EntityBase
     {
-        public Catagory Category { get; set; }
+        public CategoryDeficiency CategoryDeficiency { get; set; }
     }
 }

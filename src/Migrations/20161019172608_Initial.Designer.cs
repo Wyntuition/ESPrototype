@@ -8,7 +8,7 @@ using NCARB.EesaService.Infrastructure;
 namespace src.Migrations
 {
     [DbContext(typeof(ApplicantContext))]
-    [Migration("20161019171101_Initial")]
+    [Migration("20161019172608_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,7 @@ namespace src.Migrations
                     b.ToTable("Area");
                 });
 
-            modelBuilder.Entity("NCARB.EesaService.Entities.Catagory", b =>
+            modelBuilder.Entity("NCARB.EesaService.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -54,7 +54,21 @@ namespace src.Migrations
 
                     b.HasIndex("AreaId");
 
-                    b.ToTable("Catagory");
+                    b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("NCARB.EesaService.Entities.CategoryDeficiency", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CategoryId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("CategoryDeficiency");
                 });
 
             modelBuilder.Entity("NCARB.EesaService.Entities.Deficiency", b =>
@@ -64,22 +78,29 @@ namespace src.Migrations
 
                     b.Property<int?>("ApplicantId");
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<int?>("CategoryDeficiencyId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryDeficiencyId");
 
                     b.ToTable("Deficiency");
                 });
 
-            modelBuilder.Entity("NCARB.EesaService.Entities.Catagory", b =>
+            modelBuilder.Entity("NCARB.EesaService.Entities.Category", b =>
                 {
                     b.HasOne("NCARB.EesaService.Entities.Area", "Area")
                         .WithMany()
                         .HasForeignKey("AreaId");
+                });
+
+            modelBuilder.Entity("NCARB.EesaService.Entities.CategoryDeficiency", b =>
+                {
+                    b.HasOne("NCARB.EesaService.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
                 });
 
             modelBuilder.Entity("NCARB.EesaService.Entities.Deficiency", b =>
@@ -88,9 +109,9 @@ namespace src.Migrations
                         .WithMany("Deficiencies")
                         .HasForeignKey("ApplicantId");
 
-                    b.HasOne("NCARB.EesaService.Entities.Catagory", "Category")
+                    b.HasOne("NCARB.EesaService.Entities.CategoryDeficiency", "CategoryDeficiency")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryDeficiencyId");
                 });
         }
     }
