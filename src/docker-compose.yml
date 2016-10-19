@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+
+  web:
+    container_name: 'eesaContainer'
+    image: 'ncarb:eesa'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/eesa
+    ports:
+     - "5000:5000"
+    depends_on:
+     - "postgres"
+    networks:
+      - aspnetcoreapp-network
+
+  postgres:
+    container_name: 'postgres'
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password
+    networks:
+      - aspnetcoreapp-network
+
+networks:
+  aspnetcoreapp-network:
+    driver: bridge
