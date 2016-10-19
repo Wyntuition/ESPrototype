@@ -5,18 +5,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace NCARB.EesaService.Infrastructure
 {
-    public class ArticlesContext : DbContext
+    public class ApplicantContext : DbContext
     {
-        public DbSet<Article> Articles { get; set; }
+        public DbSet<Applicant> Applicants { get; set; }
         //public DbSet<Error> Errors { get; set; }
 
-        public ArticlesContext(DbContextOptions options) : base(options)
+        public ApplicantContext(DbContextOptions options) : base(options)
         {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=./articles.db");
+            optionsBuilder.UseSqlite("Filename=./EesaService.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,7 +26,7 @@ namespace NCARB.EesaService.Infrastructure
                 entity.Relational().TableName = entity.DisplayName();
             }
 
-            modelBuilder.Entity<Article>().Property(p => p.Title).IsRequired();
+            modelBuilder.Entity<Applicant>().Property(p => p.LastName).IsRequired();
         }
     }
   }

@@ -7,25 +7,26 @@ using NCARB.EesaService.Infrastructure;
 
 namespace src.Migrations
 {
-    [DbContext(typeof(ArticlesContext))]
-    partial class ArticlesContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ApplicantContext))]
+    [Migration("20161019163341_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
 
-            modelBuilder.Entity("NCARB.EesaService.Entities.Article", b =>
+            modelBuilder.Entity("NCARB.EesaService.Entities.Applicant", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Title")
+                    b.Property<string>("LastName")
                         .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("Article");
+                    b.ToTable("Applicant");
                 });
         }
     }

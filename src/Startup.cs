@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NCARB.EesaService.Infrastructure;
+using NCARB.EesaService.Infrastructure.Repositories;
 
 namespace ConsoleApplication
 {
@@ -28,11 +29,12 @@ namespace ConsoleApplication
             services.AddMvcCore()
                 .AddJsonFormatters();
 
-            services.AddDbContext<ArticlesContext>(options =>
+            services.AddDbContext<ApplicantContext>(options =>
             {
-                options.UseSqlite(Configuration.GetConnectionString("Articles"));
+                options.UseSqlite(Configuration.GetConnectionString("EesaService"));
             });
 
+            services.AddScoped<IApplicantRepository, ApplicantRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
