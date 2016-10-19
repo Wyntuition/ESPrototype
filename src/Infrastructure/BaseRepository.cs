@@ -77,9 +77,9 @@ namespace NCARB.EesaService.Infrastructure
             dbEntityEntry.State = EntityState.Deleted;
         }
 
-        public virtual void Commit()
+        public virtual Task<int> SaveChangesAsync()
         {
-            _context.SaveChanges();
+            return _context.SaveChangesAsync();
         }
     }
 }

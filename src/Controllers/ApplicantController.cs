@@ -11,22 +11,22 @@ namespace NCARB.EesaService.Controllers
     [Route("/api/[controller]")]
     public class ApplicantController : Controller
     {
-        private readonly ApplicantContext _context;
+        private readonly IApplicantRepository _applicantRepository;
         private readonly ILogger<ApplicantController> _logger; 
 
-        public ApplicantController(ApplicantContext context, ILogger<ApplicantController> logger)
+        public ApplicantController(IApplicantRepository applicantRepository, ILogger<ApplicantController> logger)
         {
-            _context = context;
+            _applicantRepository = applicantRepository;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Applicant>> Get() => await _context.Set<Applicant>().ToListAsync();
+        public async Task<IEnumerable<Applicant>> Get() => await _applicantRepository.GetAllAsync();
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
-            var Applicant = await _context.Applicants.SingleOrDefaultAsync(m => m.Id == id);
+            var Applicant = await _applicantRepository.GetSingleAsync(id);
             if (Applicant == null)
             {
                 return NotFound(); // This makes it return 404; otherwise it will return a 204 (no content) 
@@ -45,8 +45,8 @@ namespace NCARB.EesaService.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Applicants.Add(new Applicant { LastName = Applicant.LastName });
-            await _context.SaveChangesAsync();
+            _applicantRepository.Add(new Applicant { LastName = Applicant.LastName });
+            await _applicantRepository.SaveChangesAsync();
 
             _logger.LogDebug("Finished save");
 

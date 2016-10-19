@@ -16,6 +16,6 @@ namespace NCARB.EesaService.Infrastructure
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);        
-        void Commit();
+        Task<int> SaveChangesAsync();
     }
 }
