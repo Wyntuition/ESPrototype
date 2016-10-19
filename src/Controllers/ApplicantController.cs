@@ -44,7 +44,11 @@ namespace NCARB.EesaService.Controllers
                 return BadRequest(ModelState);
             }
 
-            _applicantRepository.Add(new Applicant { LastName = Applicant.LastName });
+            _applicantRepository.Add(
+                new Applicant { 
+                        LastName = Applicant.LastName
+                    });
+
             await _applicantRepository.SaveChangesAsync();
 
             _logger.LogDebug("Finished save");
