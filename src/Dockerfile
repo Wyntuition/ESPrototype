@@ -21,7 +21,6 @@ ENV ASPNETCORE_URLS http://*:5000
 ADD . /eesa
 WORKDIR /eesa
 
-# this is useful is you want the container to be running the app when it's finished starting up
 RUN ["dotnet", "restore"]
 RUN ["dotnet", "build"]
 ENTRYPOINT ["dotnet", "watch", "run"]

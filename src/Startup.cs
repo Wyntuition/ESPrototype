@@ -29,10 +29,14 @@ namespace ConsoleApplication
             services.AddMvcCore()
                 .AddJsonFormatters();
 
-            services.AddDbContext<ApplicantContext>(options =>
-            {
-                options.UseSqlite(Configuration.GetConnectionString("EesaService"));
-            });
+            // services.AddDbContext<ApplicantContext>(options =>
+            // {
+            //     options.UseSqlite(Configuration.GetConnectionString("EesaService"));
+            // });
+            //Add PostgreSQL support
+            services.AddEntityFrameworkNpgsql()
+                .AddDbContext<ApplicantContext>(options =>
+                    options.UseNpgsql(Configuration.GetConnectionString("LocalConnectionString")));
 
             services.AddScoped<IApplicantRepository, ApplicantRepository>();
         }

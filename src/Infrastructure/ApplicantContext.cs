@@ -14,10 +14,10 @@ namespace NCARB.EesaService.Infrastructure
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Filename=./EesaService.db");
-        }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     optionsBuilder.UseSqlite("Filename=./EesaService.db");
+        // }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
