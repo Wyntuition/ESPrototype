@@ -33,10 +33,9 @@ namespace ConsoleApplication
             // {
             //     options.UseSqlite(Configuration.GetConnectionString("EesaService"));
             // });
-            //Add PostgreSQL support
+            // Add PostgreSQL support. NOTE, had to run -sf commands at the end of this thread to fix openssl, https://github.com/dotnet/cli/issues/3783
             services.AddEntityFrameworkNpgsql()
-                .AddDbContext<ApplicantContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("LocalConnectionString")));
+                .AddDbContext<ApplicantContext>(options => options.UseNpgsql(Configuration.GetConnectionString("EesaServiceConnectionString")));
 
             services.AddScoped<IApplicantRepository, ApplicantRepository>();
         }
