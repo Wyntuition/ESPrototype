@@ -27,12 +27,13 @@ RUN ["dotnet", "restore"]
 RUN ["dotnet", "build"]
 ENTRYPOINT ["dotnet", "watch", "run"]
 
+
+################################################################################################################
 # USAGE - build image, and expose ports, the current app folder: 
 # 		docker build -t mydemos:aspnetcorehelloworld .
 #		docker run -d -p 8080:5000 -v $(pwd):/app -t mydemos:aspnetcorehelloworld 
 
 # REFERENCE: https://github.com/aspnet/aspnet-docker/blob/master/1.0.1/jessie/product/Dockerfile
-
 
 
 # FOR MULTIPLE CONTAINERS
@@ -42,7 +43,7 @@ ENTRYPOINT ["dotnet", "watch", "run"]
 # Start PostgreSQL and ASP.NET Core (link ASP.NET core to ProgreSQL container with legacy linking)
  
 # docker run -d --name my-postgres -e POSTGRES_PASSWORD=password postgres
-# docker run -d -p 5000:5000 --link my-postgres:postgres [yourDockerHubID]/dotnet:1.0.0
+# docker run -d -p 5000:5000 --link my-postgres:postgres ncarb:eesa
 
 # Option 2: Create a custom bridge network and add containers into it
 
