@@ -35,7 +35,7 @@ namespace ConsoleApplication
             // });
             // Add PostgreSQL support. NOTE, had to run -sf commands at the end of this thread to fix openssl, https://github.com/dotnet/cli/issues/3783
             services.AddEntityFrameworkNpgsql()
-                .AddDbContext<ApplicantContext>(options => options.UseNpgsql(Configuration.GetConnectionString("EesaServiceConnectionString")));
+                .AddDbContext<ApplicantContext>(options => options.UseNpgsql("User ID=postgres;Password=password;Server=postgres;Port=5432;Database=EesaService;Integrated Security=true;Pooling=true;"));
 
             services.AddScoped<IApplicantRepository, ApplicantRepository>();
         }
@@ -52,6 +52,12 @@ namespace ConsoleApplication
             }
 
             app.UseMvc();
+
+            // Create DB on startup
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                serviceScope.ServiceProvider.GetService<ApplicantContext>().Database.Migrate();
+            }
 
             startupLogger.LogTrace("Trace test output!");
             startupLogger.LogDebug("Debug test output!");

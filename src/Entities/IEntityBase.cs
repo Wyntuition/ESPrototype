@@ -1,3 +1,5 @@
+using System;
+
 namespace NCARB.EesaService.Entities
 {
     public interface IEntityBase

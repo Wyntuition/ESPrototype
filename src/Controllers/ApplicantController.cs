@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using NCARB.EesaService.Infrastructure;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace NCARB.EesaService.Controllers
 {
@@ -51,6 +52,7 @@ namespace NCARB.EesaService.Controllers
 
             _applicantRepository.Add(
                 new Applicant { 
+                        Id = new Random().Next(),
                         LastName = Applicant.LastName,
                         Deficiencies = deficiencies
                     });
