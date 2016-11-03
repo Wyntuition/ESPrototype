@@ -13,7 +13,7 @@ namespace src.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
+                .HasAnnotation("ProductVersion", "1.0.1");
 
             modelBuilder.Entity("NCARB.EesaService.Entities.Applicant", b =>
                 {

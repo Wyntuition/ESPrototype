@@ -35,6 +35,8 @@ namespace NCARB.EesaService.Controllers
             return new ObjectResult(Applicant);
         }
 
+        /// Test: 
+        ///   curl -H "Content-Type: application/json" -X POST -d '{"lastName":"IWasPosted"}' http://localhost:5000/api/applicant 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Applicant Applicant)
         {
@@ -45,16 +47,16 @@ namespace NCARB.EesaService.Controllers
                 return BadRequest(ModelState);
             }
 
-            var deficiencies = new List<Deficiency>();
-            deficiencies.Add(new Deficiency {
-                CategoryDeficiency = new CategoryDeficiency { Category = new Category { Name = "Test Category 1", Area = new Area { Name = "Test Area 1" } } }
-            });
+            // var deficiencies = new List<Deficiency>();
+            // deficiencies.Add(new Deficiency {
+            //     CategoryDeficiency = new CategoryDeficiency { Category = new Category { Name = "Test Category 1", Area = new Area { Name = "Test Area 1" } } }
+            // });
 
             _applicantRepository.Add(
                 new Applicant { 
                         Id = new Random().Next(),
                         LastName = Applicant.LastName,
-                        Deficiencies = deficiencies
+                        //Deficiencies = deficiencies
                     });
 
             await _applicantRepository.SaveChangesAsync();

@@ -59,6 +59,10 @@ namespace ConsoleApplication
                 serviceScope.ServiceProvider.GetService<ApplicantContext>().Database.Migrate();
             }
 
+            // TODO: Not working (saw it working when Seeder was injected)
+            // var applicantSeeder = new ApplicantSeeder();
+            // applicantSeeder.SeedAsync(app.ApplicationServices).Wait();
+
             startupLogger.LogTrace("Trace test output!");
             startupLogger.LogDebug("Debug test output!");
             startupLogger.LogInformation("Info test output!");
