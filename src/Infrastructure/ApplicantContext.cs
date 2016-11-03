@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using NCARB.EesaService.Entities;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace NCARB.EesaService.Infrastructure
 {
@@ -14,11 +13,6 @@ namespace NCARB.EesaService.Infrastructure
         public ApplicantContext(DbContextOptions options) : base(options)
         {
         }
-
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     optionsBuilder.UseSqlite("Filename=./EesaService.db");
-        // }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

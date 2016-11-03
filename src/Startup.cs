@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using NCARB.EesaService.Infrastructure;
 using NCARB.EesaService.Infrastructure.Repositories;
 
-namespace ConsoleApplication
+namespace NCARB.EesaService
 {
     public class Startup
     {
