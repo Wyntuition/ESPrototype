@@ -13,6 +13,10 @@ namespace NCARB.EesaService
                 .AddCommandLine(args)
                 .Build();
 
+            // TODO
+            // var url = config["ASPNETCORE_URLS"] ?? "http://*:5000";
+            // var env = config["ASPNETCORE_ENVIRONMENT"] ?? "Development";
+
             var host = new WebHostBuilder() //  Build the host. Must implement IWebHost and returns a WebHost object
                 .UseKestrel() //  Creates web server and hosts the code. WebHostBuilder requires a server that implements IServer, as this does.
                                 
