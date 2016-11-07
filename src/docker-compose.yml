@@ -3,13 +3,13 @@ version: '2'
 services:
 
   web:
-    container_name: 'eesaContainer'
-    image: 'ncarb:eesa'
+    container_name: 'aspnetCoreApi'
+    image: 'proto:aspnetCoreApi'
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - .:/eesa
+      - .:/app
     ports:
      - "5000:5000"
     depends_on:
@@ -20,6 +20,8 @@ services:
   postgres:
     container_name: 'postgres'
     image: postgres
+    volumes:
+      - /opt/db/sc??:/var/lib/postgresql
     environment:
       POSTGRES_PASSWORD: password
     networks:
